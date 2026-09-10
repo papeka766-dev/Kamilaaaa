@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Специальный подарок для тебя 💝</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Страница 1: Ввод пароля с датой -->
+    <div id="page1" class="page active">
+        <div class="container">
+            <h1 class="title">🎁 Специальный подарок 💝</h1>
+            <p class="subtitle">Введи дату, когда всё началось...</p>
+            
+            <div class="password-section">
+                <p class="hint">Подсказка: день.месяц.год (29.6.25)</p>
+                <input 
+                    type="text" 
+                    id="dateInput" 
+                    class="password-input" 
+                    placeholder="ДД.М.ГГ"
+                    autocomplete="off"
+                    maxlength="8"
+                >
+                <button class="btn" onclick="checkDate()">Продолжить →</button>
+                <div id="dateError" class="error"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Страница 2: Вопрос с галочкой -->
+    <div id="page2" class="page">
+        <div class="container">
+            <h1 class="title">💕 Вопрос для тебя</h1>
+            <p class="subtitle">Ты точно любишь меня?</p>
+            
+            <div class="checkbox-section">
+                <label class="custom-checkbox">
+                    <input type="checkbox" id="loveCheckbox" onchange="handleCheckbox()">
+                    <span class="checkmark"></span>
+                    <span class="label-text">Да, люблю! ❤️</span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Страница 3: Вопрос с убегающей кнопкой -->
+    <div id="page3" class="page">
+        <div class="container">
+            <h1 class="title">😢 Последний вопрос</h1>
+            <p class="subtitle">Будешь ли ты скучать по мне?</p>
+            
+            <div class="buttons-section">
+                <button class="btn btn-yes" id="yesBtn" onclick="handleYes()">Да 💔</button>
+                <button class="btn btn-no" id="noBtn" onmouseover="moveButton(this)" onmouseenter="moveButton(this)">Нет 😒</button>
+                <div id="clickCounter" class="click-counter"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Страница 4: Финальное сообщение с фото -->
+    <div id="page4" class="page">
+        <div class="container final-container">
+            <div id="photoContainer" class="photo-container">
+                <img id="couplePhoto" src="" alt="Наша совместная фото" class="couple-photo">
+                <div class="love-message">
+                    Я тебя люблю сильнее всех<br>
+                    и надеюсь тебе понравится этот подарок 💕
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
