@@ -7,6 +7,23 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Декоративные элементы -->
+    <div class="decorations">
+        <div class="decoration heart">❤️</div>
+        <div class="decoration heart">❤️</div>
+        <div class="decoration heart">❤️</div>
+        <div class="decoration bear">🧸</div>
+        <div class="decoration bear">🧸</div>
+        <div class="decoration cat">🐱</div>
+        <div class="decoration dog">🐕</div>
+        <div class="decoration love-text">Я люблю тебя</div>
+        <div class="decoration love-text">Я люблю тебя</div>
+        <div class="decoration dog">🐕</div>
+        <div class="decoration cat">🐱</div>
+        <div class="decoration bear">🧸</div>
+        <div class="decoration heart">❤️</div>
+    </div>
+
     <!-- Страница 1: Ввод пароля с датой -->
     <div id="page1" class="page active">
         <div class="container">
@@ -59,14 +76,69 @@
         </div>
     </div>
 
-    <!-- Страница 4: Финальное сообщение с фото -->
+    <!-- Страница 4: Финальное сообщение с фото и скроллом -->
     <div id="page4" class="page">
-        <div class="container final-container">
-            <div id="photoContainer" class="photo-container">
-                <img id="couplePhoto" src="" alt="Наша совместная фото" class="couple-photo">
-                <div class="love-message">
-                    Я тебя люблю сильнее всех<br>
-                    и надеюсь тебе понравится этот подарок 💕
+        <div class="final-wrapper">
+            <!-- Первая фото -->
+            <div class="photo-section">
+                <div id="photoContainer" class="photo-container">
+                    <img id="couplePhoto" src="" alt="Наша совместная фото" class="couple-photo">
+                </div>
+            </div>
+
+            <!-- Длинное послание с возможностью скролла -->
+            <div class="love-letter">
+                <div class="letter-content">
+                    <p class="letter-text">
+                        Я тебя люблю сильно сильно, и я реально очень сильно рад тому что в тот день когда я с тобой начал встречаться ты согласилась на мое предложение и теперь мы пара уже как 1 год и 2 месяца!!!!! 
+                    </p>
+                    <p class="letter-text">
+                        Но это еще мало, у нас еще вся жизнь впереди, спасибо тебе за поддержку, за всю любовь которую ты мне дала за все время, и я надеюсь ты получаешь все тоже самое, и ты рада что ты со мной. 
+                    </p>
+                    <p class="letter-text">
+                        Правда спасибо тебе за все это, мне очень хорошо с тобой всегда, и всегда я радуюсь тому что ты рядом со мной и у нас все хорошо. 
+                    </p>
+                    <p class="letter-text">
+                        Ты самая добрая, красивая, умная, невероятная, самая прекрасная, самая милая, самая самая самая, в общем, хочу сказать что я счастлив с тобой и надеюсь ты чувствуешь то же самое. 
+                    </p>
+
+                    <!-- Конфетти зона -->
+                    <div id="confettiZone" class="confetti-zone">
+                        <div class="confetti-text">✨ 🎉 ✨</div>
+                    </div>
+
+                    <!-- Вторая фото -->
+                    <div class="second-photo-section">
+                        <img id="couplePhoto2" src="" alt="Вторая совместная фото" class="couple-photo-2">
+                        <p class="photo-caption">тут мы прям миленькие и видно что любим друг друга 💕</p>
+                    </div>
+
+                    <!-- Счётчик времени -->
+                    <div class="time-counter">
+                        <h2>Мы вместе уже:</h2>
+                        <div id="timeDisplay" class="time-display">
+                            <div class="time-item">
+                                <span id="days" class="time-number">0</span>
+                                <span class="time-label">дней</span>
+                            </div>
+                            <div class="time-item">
+                                <span id="hours" class="time-number">0</span>
+                                <span class="time-label">часов</span>
+                            </div>
+                            <div class="time-item">
+                                <span id="minutes" class="time-number">0</span>
+                                <span class="time-label">минут</span>
+                            </div>
+                            <div class="time-item">
+                                <span id="seconds" class="time-number">0</span>
+                                <span class="time-label">секунд</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="final-message">
+                        ❤️ Я люблю тебя ❤️
+                    </div>
                 </div>
             </div>
         </div>
