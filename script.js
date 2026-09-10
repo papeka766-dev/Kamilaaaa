@@ -3,6 +3,9 @@ const CORRECT_DATE = "29.6.25";
 let yesClickCount = 0;
 const MAX_YES_CLICKS = 8;
 
+// Дата начала отношений: 29 июня 2025, 01:30
+const RELATIONSHIP_START = new Date(2025, 5, 29, 1, 30, 0); // месяцы считаются с 0
+
 // Проверка даты
 function checkDate() {
     const input = document.getElementById('dateInput').value.trim();
@@ -75,15 +78,41 @@ function showPage(pageNumber) {
 
 // Финальная анимация
 function startFinalAnimation() {
-    const photoContainer = document.getElementById('photoContainer');
+    // Загружаем фотки
+    loadPhotos();
     
-    // Здесь можно добавить дополнительные эффекты
-    // Фото будет плавно отдаляться благодаря CSS анимации
+    // Запускаем счётчик времени
+    updateTimeCounter();
+    setInterval(updateTimeCounter, 1000);
+}
+
+// Загрузка фоток
+function loadPhotos() {
+    // Используем базовый путь для фоток
+    // Можно заменить на URL ваших фоток
+    const photo1 = document.getElementById('couplePhoto');
+    const photo2 = document.getElementById('couplePhoto2');
     
-    // Автоматически скрыть через 10 секунд (опционально)
-    setTimeout(() => {
-        // Можно добавить какое-то действие после 10 секунд
-    }, 10000);
+    // Если фотки не загруженны, используем пустые src
+    // Позже ты можешь указать правильные пути
+    photo1.src = photo1.src || 'photo1.jpg'; // Замени на путь к первой фотке
+    photo2.src = photo2.src || 'photo2.jpg'; // Замени на путь ко второй фотке
+}
+
+// Обновление счётчика времени
+function updateTimeCounter() {
+    const now = new Date();
+    const diff = now - RELATIONSHIP_START;
+    
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+    
+    document.getElementById('days').textContent = days;
+    document.getElementById('hours').textContent = hours;
+    document.getElementById('minutes').textContent = minutes;
+    document.getElementById('seconds').textContent = seconds;
 }
 
 // Обработка Enter для ввода даты
@@ -106,7 +135,7 @@ document.querySelectorAll('.btn').forEach(btn => {
     });
 });
 
-// Создание конфетти эффекта (опционально)
+// Создание конфетти эффекта
 function createConfetti(element) {
     const rect = element.getBoundingClientRect();
     const emojis = ['💝', '💕', '❤️', '🎁', '✨'];
@@ -120,6 +149,7 @@ function createConfetti(element) {
         confetti.style.fontSize = '1.5em';
         confetti.style.pointerEvents = 'none';
         confetti.style.animation = 'float 1s ease-in forwards';
+        confetti.style.zIndex = '9999';
         
         document.body.appendChild(confetti);
         
