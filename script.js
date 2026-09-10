@@ -88,15 +88,12 @@ function startFinalAnimation() {
 
 // Загрузка фоток
 function loadPhotos() {
-    // Используем базовый путь для фоток
-    // Можно заменить на URL ваших фоток
     const photo1 = document.getElementById('couplePhoto');
     const photo2 = document.getElementById('couplePhoto2');
     
-    // Если фотки не загруженны, используем пустые src
-    // Позже ты можешь указать правильные пути
-    photo1.src = photo1.src || 'photo1.jpg'; // Замени на путь к первой фотке
-    photo2.src = photo2.src || 'photo2.jpg'; // Замени на путь ко второй фотке
+    // Используем прямые ссылки на Raw фотки из GitHub
+    photo1.src = 'https://raw.githubusercontent.com/papeka766-dev/Kamilaaaa/main/a5ce75b0-aee4-426f-a1b3-0526de4d2643.jpg';
+    photo2.src = 'https://raw.githubusercontent.com/papeka766-dev/Kamilaaaa/main/de96eb08-900e-48ad-a825-65b515dd069c.jpg';
 }
 
 // Обновление счётчика времени
