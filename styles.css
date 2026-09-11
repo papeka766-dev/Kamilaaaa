@@ -18,6 +18,71 @@ body {
     position: relative;
 }
 
+/* Падающие сердечки */
+#falling-hearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0.5;
+}
+
+.falling-heart {
+    position: fixed;
+    font-size: 2em;
+    opacity: 0.6;
+    animation: fall linear forwards;
+    will-change: transform;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+/* Уведомления */
+#notifications-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10000;
+    pointer-events: none;
+}
+
+.notification {
+    background: rgba(255, 192, 203, 0.95);
+    color: #ff1493;
+    padding: 15px 30px;
+    border-radius: 25px;
+    margin: 10px 0;
+    font-weight: bold;
+    font-size: 1.1em;
+    animation: slideInNotification 0.5s ease, slideOutNotification 0.5s ease 2.5s forwards;
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+}
+
+@keyframes slideInNotification {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideOutNotification {
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
 /* Декорации */
 .decorations {
     position: fixed;
@@ -106,6 +171,28 @@ body {
     margin: auto;
 }
 
+.photos-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.gallery-photo {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    animation: fadeInScale 0.6s ease-out;
+}
+
+.gallery-caption {
+    font-size: 1.1em;
+    color: #764ba2;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
 @keyframes slideIn {
     from {
         opacity: 0;
@@ -176,6 +263,7 @@ body {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     font-weight: bold;
     margin: 10px;
+    position: relative;
 }
 
 .btn:hover {
@@ -378,6 +466,35 @@ body {
     animation: fadeInScale 0.8s ease-out forwards;
 }
 
+/* Котики */
+.cats-section {
+    width: 100%;
+    margin-top: 40px;
+    flex-shrink: 0;
+}
+
+.cats-title {
+    font-size: 1.5em;
+    color: #764ba2;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.cats-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.cat-photo {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+    animation: fadeInScale 0.8s ease-out forwards;
+}
+
 @keyframes fadeInScale {
     from {
         opacity: 0;
@@ -507,5 +624,9 @@ body {
 
     .decoration {
         font-size: 1.5em;
+    }
+
+    .cats-gallery {
+        grid-template-columns: repeat(2, 1fr);
     }
 }

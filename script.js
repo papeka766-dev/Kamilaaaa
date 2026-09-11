@@ -25,7 +25,7 @@ function handleCheckbox() {
     const checkbox = document.getElementById('loveCheckbox');
     if (checkbox.checked) {
         setTimeout(() => {
-            showPage(3);
+            showPage('2-5');
             checkbox.checked = false;
         }, 500);
     }
@@ -73,27 +73,21 @@ function showPage(pageNumber) {
     });
     
     // Показываем нужную страницу
-    document.getElementById(`page${pageNumber}`).classList.add('active');
+    if (pageNumber === '2-5') {
+        document.getElementById('page2-5').classList.add('active');
+    } else {
+        document.getElementById(`page${pageNumber}`).classList.add('active');
+    }
 }
 
 // Финальная анимация
 function startFinalAnimation() {
-    // Загружаем фотки
-    loadPhotos();
-    
     // Запускаем счётчик времени
     updateTimeCounter();
     setInterval(updateTimeCounter, 1000);
-}
-
-// Загрузка фоток
-function loadPhotos() {
-    const photo1 = document.getElementById('couplePhoto');
-    const photo2 = document.getElementById('couplePhoto2');
     
-    // Используем прямые ссылки на Raw фотки из GitHub
-    photo1.src = 'https://raw.githubusercontent.com/papeka766-dev/Kamilaaaa/main/a5ce75b0-aee4-426f-a1b3-0526de4d2643.jpg';
-    photo2.src = 'https://raw.githubusercontent.com/papeka766-dev/Kamilaaaa/main/de96eb08-900e-48ad-a825-65b515dd069c.jpg';
+    // Показываем уведомления случайно
+    startRandomNotifications();
 }
 
 // Обновление счётчика времени
@@ -112,6 +106,115 @@ function updateTimeCounter() {
     document.getElementById('seconds').textContent = seconds;
 }
 
+// Падающие сердечки
+function createFallingHearts() {
+    const container = document.getElementById('falling-hearts');
+    let heartCount = 0;
+    
+    const interval = setInterval(() => {
+        if (heartCount > 50) clearInterval(interval); // Ограничиваем количество
+        
+        const heart = document.createElement('div');
+        heart.className = 'falling-heart';
+        heart.textContent = '❤️';
+        
+        const randomLeft = Math.random() * 100;
+        const randomDuration = 6 + Math.random() * 2; // 6-8 секунд
+        
+        heart.style.left = randomLeft + '%';
+        heart.style.animationDuration = randomDuration + 's';
+        
+        container.appendChild(heart);
+        heartCount++;
+        
+        // Удаляем элемент после завершения анимации
+        setTimeout(() => heart.remove(), randomDuration * 1000);
+    }, 1000); // По одному сердечку в секунду
+}
+
+// Случайные уведомления
+function startRandomNotifications() {
+    const messages = [
+        '💕 Я люблю тебя',
+        '❤️ Ты лучшая',
+        '💫 Спасибо за всё',
+        '✨ Ты королева',
+        '🎁 Ты моя любовь'
+    ];
+    
+    // Показываем уведомление каждые 4-6 секунд
+    setInterval(() => {
+        const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+        showNotification(randomMessage);
+    }, 5000 + Math.random() * 2000);
+}
+
+// Показ уведомления
+function showNotification(message) {
+    const container = document.getElementById('notifications-container');
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.textContent = message;
+    
+    container.appendChild(notification);
+    
+    // Удаляем уведомление через 3 секунды
+    setTimeout(() => notification.remove(), 3000);
+}
+
+// Частицы при клике на кнопки
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('btn')) {
+        createParticles(e.clientX, e.clientY);
+    }
+});
+
+function createParticles(x, y) {
+    const particles = ['💖', '✨', '⭐', '💫', '🌟'];
+    
+    for (let i = 0; i < 8; i++) {
+        const particle = document.createElement('div');
+        particle.textContent = particles[Math.floor(Math.random() * particles.length)];
+        particle.style.position = 'fixed';
+        particle.style.left = x + 'px';
+        particle.style.top = y + 'px';
+        particle.style.fontSize = '1.2em';
+        particle.style.pointerEvents = 'none';
+        particle.style.zIndex = '9999';
+        
+        const angle = (i / 8) * Math.PI * 2;
+        const velocity = 5 + Math.random() * 5;
+        const vx = Math.cos(angle) * velocity;
+        const vy = Math.sin(angle) * velocity;
+        
+        particle.style.animation = `particleFloat ${1.5 + Math.random() * 0.5}s ease-out forwards`;
+        particle.style.setProperty('--vx', vx);
+        particle.style.setProperty('--vy', vy);
+        
+        document.body.appendChild(particle);
+        
+        setTimeout(() => particle.remove(), 2000);
+    }
+}
+
+// CSS для частиц
+const particleStyle = document.createElement('style');
+particleStyle.textContent = `
+    @keyframes particleFloat {
+        to {
+            transform: translate(calc(var(--vx) * 100px), calc(var(--vy) * 100px));
+            opacity: 0;
+        }
+    }
+    @keyframes float {
+        to {
+            transform: translateY(-100px) rotate(360deg);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(particleStyle);
+
 // Обработка Enter для ввода даты
 document.addEventListener('DOMContentLoaded', function() {
     const dateInput = document.getElementById('dateInput');
@@ -123,45 +226,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Фокус на первый инпут
     dateInput.focus();
-});
-
-// Эмодзи анимация для кнопок
-document.querySelectorAll('.btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-        createConfetti(this);
-    });
-});
-
-// Создание конфетти эффекта
-function createConfetti(element) {
-    const rect = element.getBoundingClientRect();
-    const emojis = ['💝', '💕', '❤️', '🎁', '✨'];
     
-    for (let i = 0; i < 3; i++) {
-        const confetti = document.createElement('div');
-        confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-        confetti.style.position = 'fixed';
-        confetti.style.left = rect.left + rect.width / 2 + 'px';
-        confetti.style.top = rect.top + 'px';
-        confetti.style.fontSize = '1.5em';
-        confetti.style.pointerEvents = 'none';
-        confetti.style.animation = 'float 1s ease-in forwards';
-        confetti.style.zIndex = '9999';
-        
-        document.body.appendChild(confetti);
-        
-        setTimeout(() => confetti.remove(), 1000);
-    }
-}
-
-// CSS для конфетти анимации
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes float {
-        to {
-            transform: translateY(-100px) rotate(360deg);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(style);
+    // Запускаем падающие сердечки сразу
+    createFallingHearts();
+});
