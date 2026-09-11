@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Падающие сердечки -->
+    <div id="falling-hearts"></div>
+
+    <!-- Уведомления -->
+    <div id="notifications-container"></div>
+
     <!-- Декоративные элементы -->
     <div class="decorations">
         <div class="decoration heart">❤️</div>
@@ -62,6 +68,18 @@
         </div>
     </div>
 
+    <!-- Страница 2.5: Фотки после галочки -->
+    <div id="page2-5" class="page">
+        <div class="container">
+            <div class="photos-gallery">
+                <img src="https://raw.githubusercontent.com/papeka766-dev/Kamilaaaa/main/a5ce75b0-aee4-426f-a1b3-0526de4d2643.jpg" alt="Photo 3" class="gallery-photo">
+                <img src="https://raw.githubusercontent.com/papeka766-dev/Kamilaaaa/main/de96eb08-900e-48ad-a825-65b515dd069c.jpg" alt="Photo 4" class="gallery-photo">
+                <p class="gallery-caption">наши лучшие моменты 💕</p>
+                <button class="btn" onclick="showPage(3)" style="margin-top: 30px;">Дальше →</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Страница 3: Вопрос с убегающей кнопкой -->
     <div id="page3" class="page">
         <div class="container">
@@ -82,7 +100,7 @@
             <!-- Первая фото с фиксированной высотой -->
             <div class="photo-section">
                 <div class="photo-container">
-                    <img id="couplePhoto" src="" alt="Наша совместная фото" class="couple-photo">
+                    <img id="couplePhoto" src="https://raw.githubusercontent.com/papeka766-dev/Kamilaaaa/main/a5ce75b0-aee4-426f-a1b3-0526de4d2643.jpg" alt="Наша совместная фото" class="couple-photo">
                 </div>
             </div>
 
@@ -109,8 +127,19 @@
 
                     <!-- Вторая фото -->
                     <div class="second-photo-section">
-                        <img id="couplePhoto2" src="" alt="Вторая совместная фото" class="couple-photo-2">
+                        <img id="couplePhoto2" src="https://raw.githubusercontent.com/papeka766-dev/Kamilaaaa/main/de96eb08-900e-48ad-a825-65b515dd069c.jpg" alt="Вторая совместная фото" class="couple-photo-2">
                         <p class="photo-caption">тут мы прям миленькие и видно что любим друг друга 💕</p>
+                    </div>
+
+                    <!-- Фотки котят -->
+                    <div class="cats-section">
+                        <h3 class="cats-title">ета ми 🐱💕</h3>
+                        <div class="cats-gallery">
+                            <img src="cats1.jpg" alt="Котята 1" class="cat-photo">
+                            <img src="cats2.jpg" alt="Котята 2" class="cat-photo">
+                            <img src="cats3.jpg" alt="Котята 3" class="cat-photo">
+                            <img src="cats4.jpg" alt="Котята 4" class="cat-photo">
+                        </div>
                     </div>
 
                     <!-- Счётчик времени -->
